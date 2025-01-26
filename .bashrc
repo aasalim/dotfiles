@@ -30,6 +30,9 @@ alias vi="nvim"
 alias wiki="cd $HOME/vimwiki;vim -c VimwikiIndex"
 alias srcb="source $BASHRC"
 
+# Terminal Navigation
+alias ls="ls -la --color=auto"
+
 # ____                            _  
 #|  _ \ _ __ ___  _ __ ___  _ __ | |_
 #| |_) | '__/ _ \| '_ ` _ \| '_ \| __|

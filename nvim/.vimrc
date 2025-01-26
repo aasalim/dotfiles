@@ -7,7 +7,7 @@
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
     silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    autocmd VimEnter * PlugInstall --sync | source $VIMRC
 endif
 
 "  ____  _             _           
@@ -24,19 +24,23 @@ Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 "Plug 'preservim/vim-markdown'
 Plug 'junegunn/goyo.vim'
-Plug 'folke/tokyonight.nvim'
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plug 'preservim/nerdtree'
+
+" Themes
+Plug 'folke/tokyonight.nvim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 call plug#end()
 
-" __     ___        __        ___ _    _ 
-" \ \   / (_)_ __ __\ \      / (_) | _(_)
-"  \ \ / /| | '_ ` _ \ \ /\ / /| | |/ / |
-"   \ V / | | | | | | \ V  V / | |   <| |
-"    \_/  |_|_| |_| |_|\_/\_/  |_|_|\_\_|
-"                                        
-filetype plugin on
+
+" ____  _             _         ____       _   _   _                 
+"|  _ \| |_   _  __ _(_)_ __   / ___|  ___| |_| |_(_)_ __   __ _ ___ 
+"| |_) | | | | |/ _` | | '_ \  \___ \ / _ \ __| __| | '_ \ / _` / __|
+"|  __/| | |_| | (_| | | | | |  ___) |  __/ |_| |_| | | | | (_| \__ \
+"|_|   |_|\__,_|\__, |_|_| |_| |____/ \___|\__|\__|_|_| |_|\__, |___/
+"               |___/                                      |___/     
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': 'md'}]
+let NERDTreeQuitOnOpen=1
 
 "  ____ _                          _              _____     _         
 " / ___| |__   __ _ _ __ __ _  ___| |_ ___ _ __  |_   _|_ _| |__  ___ 
@@ -57,7 +61,7 @@ set smartindent
 " |_____|_|_| |_|\___| |_| \_|\__,_|_| |_| |_|_.__/ \___|_|  |___/
 "                                                                 
 set number
-set norelativenumber
+set relativenumber
 set scrolloff=10
 set sidescrolloff=10
 " __        __            _  __        __               
@@ -69,14 +73,12 @@ set sidescrolloff=10
 set nowrap
 set linebreak
 
-"
 "   ____                 ____                 _ _   _       _ _         
 "  / ___|__ _ ___  ___  / ___|  ___ _ __  ___(_) |_(_)_   _(_) |_ _   _ 
 " | |   / _` / __|/ _ \ \___ \ / _ \ '_ \/ __| | __| \ \ / / | __| | | |
 " | |__| (_| \__ \  __/  ___) |  __/ | | \__ \ | |_| |\ V /| | |_| |_| |
 "  \____\__,_|___/\___| |____/ \___|_| |_|___/_|\__|_| \_/ |_|\__|\__, |
 "                                                                 |___/ 
-
 set ignorecase
 set nosmartcase 
 
@@ -114,8 +116,7 @@ endfunction
 "| |__| (_) | | (_) | |  \__ \
 " \____\___/|_|\___/|_|  |___/
 "                             
-colorscheme tokyonight
-
+colorscheme tokyonight-night
 
 "  ____                           _ 
 " / ___| ___ _ __   ___ _ __ __ _| |
@@ -132,23 +133,38 @@ set showmode
 set termguicolors
 set splitbelow
 set splitright
-
-set clipboard=unnamedplus
-
-syntax on
-
-" change from left splitting to right splitting
-"let g:netrw_altv=1
-"let g:netrw_banner=0
-" tree style view in netrw
-"let g:netrw_liststyle=3
-
-"Command
+set history=500
+set ruler
 set showcmd
 set cmdheight=1
-"set timeoutlen=200 
+set hid
+set hlsearch
+set incsearch
+set lazyredraw
+set showmatch
+set noerrorbells
+set novisualbell
+set cursorline
 
-let NERDTreeQuitOnOpen=1
+filetype plugin on
+filetype indent on
+syntax enable
+
+set clipboard=unnamedplus
+set backspace=eol,start,indent
+set mat=2
+set t_vb=
+set tm=500
+set foldcolumn=1
+set ffs=unix,dos,mac
+
+" Set to auto read when a file is changed from the outside
+set autoread
+au FocusGained,BufEnter * silent! checktime
+
+" :W sudo saves the file
+" (useful for handling the permission-denied error)
+command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 "  _  __                                    
 " | |/ /___ _   _ _ __ ___   __ _ _ __  ___ 
@@ -228,8 +244,8 @@ function! InsertCGuard()
   call append('$', '#endif /* ' . l:guard . ' */')
 endfunction
 
-" Reload MYVIMRC
-nnoremap <Leader>r :source $MYVIMRC<CR>
+" Reload VIMRC
+nnoremap <Leader>r :source $VIMRC<CR>
 
 " _    _   _   _    
 "| |  | | | | / \   
