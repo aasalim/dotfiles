@@ -3,10 +3,12 @@ GIT_DOTFILES="$HOME/dotfiles"
 
 copy_local_files_to_dotfiles(){
     cp "$HOME/.bashrc" $GIT_DOTFILES
+    cp "$HOME/.config/nvim" $GIT_DOTFILES -r
 }
 
 copy_dotfiles_to_local_files(){
     cp "$GIT_DOTFILES/.bashrc" "$HOME/.bashrc"
+    cp "$GIT_DOTFILES/.config/nvim" "$HOME/.config/nvim"
 }
 
 while getopts "capPh" opt; do
@@ -35,8 +37,7 @@ if [[ $help -eq 1 ]]; then
   echo "-h: Display this help message"
   echo "-c: Copy the local files to the dotfiles"
   echo "-a: Apply the dotfiles to local files"
-  echo "-a: Apply the dotfiles to local files"
   echo "-p: Pull git repo"
-  echo "-P: Push git repo"
+  echo "-P: Push changes to git repo"
   exit 0
 fi
