@@ -9,13 +9,19 @@ copy_dotfiles_to_local_files(){
     cp "$GIT_DOTFILES/.bashrc" "$HOME/.bashrc"
 }
 
-while getopts "cah" opt; do
+while getopts "capPh" opt; do
   case $opt in
     c) 
         copy_local_files_to_dotfiles
     ;;
     a) 
         copy_dotfiles_to_local_files
+    ;;
+    p) 
+        git -C $GIT_DOTFILES pull
+    ;;
+    P) 
+        git -C $GIT_DOTFILES push
     ;;
     h) help=1 
     ;;
@@ -27,5 +33,8 @@ if [[ $help -eq 1 ]]; then
   echo "-h: Display this help message"
   echo "-c: Copy the local files to the dotfiles"
   echo "-a: Apply the dotfiles to local files"
+  echo "-a: Apply the dotfiles to local files"
+  echo "-p: Pull git repo"
+  echo "-P: Push git repo"
   exit 0
 fi
