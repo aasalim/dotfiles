@@ -177,12 +177,12 @@ while getopts "capPh" opt; do
 done
 
 if [[ $help -eq 1 ]]; then
-    echo "Usage: $0 [-vh]"
-    echo "-h: Display this help message"
-    echo "-c: Copy the local files to the dotfiles"
-    echo "-a: Apply the dotfiles to local files"
-    echo "-p: Pull git repo"
-    echo "-P: Push changes to git repo"
+    echo "Usage: $0 [-achpP]"
+    echo -e "\t-a: Apply dotfiles"
+    echo -e "\t-c: Copy the local files to the dotfiles"
+    echo -e "\t-h: Display this help message"
+    echo -e "\t-p: Pull git repo"
+    echo -e "\t-P: Push changes to git repo"
 fi
 
 # ____ ____  _   _ 
