@@ -1,0 +1,31 @@
+#!/bin/bash
+GIT_DOTFILES="$HOME/dotfiles"
+
+copy_local_files_to_dotfiles(){
+    cp "$HOME/.bashrc" $GIT_DOTFILES
+}
+
+copy_dotfiles_to_local_files(){
+    cp "$GIT_DOTFILES/.bashrc" "$HOME/.bashrc"
+}
+
+while getopts "cah" opt; do
+  case $opt in
+    c) 
+        copy_local_files_to_dotfiles
+    ;;
+    a) 
+        copy_dotfiles_to_local_files
+    ;;
+    h) help=1 
+    ;;
+  esac
+done
+
+if [[ $help -eq 1 ]]; then
+  echo "Usage: $0 [-vh]"
+  echo "-h: Display this help message"
+  echo "-c: Copy the local files to the dotfiles"
+  echo "-a: Apply the dotfiles to local files"
+  exit 0
+fi
