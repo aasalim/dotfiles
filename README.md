@@ -1,7 +1,8 @@
 # dotfiles
 
 ## Requirements
-   - Ansible
+    - Linux
 
 ## Files Tracked
     - ~/.bashrc
+    - ~/.config/nvim

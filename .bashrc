@@ -8,6 +8,7 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:=$HOME/.config}
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.share"
 export XDG_STATE_HOME="$HOME/.state"
+
 #__     ___          
 #\ \   / (_)_ __ ___  
 # \ \ / /| | '_ ` _ \
@@ -18,7 +19,6 @@ export VIMRC="$HOME/.config/nvim/.vimrc"
 export VIMINIT="source $VIMRC"
 alias vim="nvim"
 alias vi="nvim"
-
 
 #    _    _ _                    
 #   / \  | (_) __ _ ___  ___  ___
