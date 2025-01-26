@@ -143,7 +143,7 @@ copy_dotfiles_to_configs(){
     done
 }
 
-while getopts "capPh" opt; do
+while getopts "capPhs" opt; do
   case $opt in
     c) 
         __task "Copy local files to dotfiles"
@@ -169,6 +169,10 @@ while getopts "capPh" opt; do
         _cmd "git -C $DOTFILES_DIR  commit -m "fix: dotfiles" --quiet"
         _cmd "git -C $DOTFILES_DIR  push --quiet"
         _task_done
+        exit 0
+    ;;
+    s) 
+        git -C $DOTFILES_DIR status
         exit 0
     ;;
     h) help=1 
