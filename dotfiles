@@ -162,12 +162,13 @@ while getopts "capPh" opt; do
         _cmd "git -C $DOTFILES_DIR pull"
         _task_done
         exit 0
-        exit 0
     ;;
     P) 
-        git -C $DOTFILES_DIR  add . 
-        git -C $DOTFILES_DIR  commit -m "fix: dotfiles" --quiet
-        git -C $DOTFILES_DIR  push --quiet
+        __task "Pushing Repository"
+        _cmd "git -C $DOTFILES_DIR  add ."
+        _cmd "git -C $DOTFILES_DIR  commit -m "fix: dotfiles" --quiet"
+        _cmd "git -C $DOTFILES_DIR  push --quiet"
+        _task_done
         exit 0
     ;;
     h) help=1 
