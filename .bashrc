@@ -19,8 +19,6 @@ export VIMINIT="source $VIMRC"
 alias vim="nvim"
 alias vi="nvim"
 
-export BASHRC="$HOME/.bashrc"
-export GIT_DOTFILES="$HOME/dotfiles"
 
 #    _    _ _                    
 #   / \  | (_) __ _ ___  ___  ___
@@ -57,6 +55,6 @@ tty -s && export PS1="$LINE_COLOR$LINE_UPPER_CORNER$LINE_STRAIGHT$LINE_STRAIGHT$
 #|  __/ ___ \| | |  _  |
 #|_| /_/   \_\_| |_| |_|
 #                      
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/polyspacedesktop/polyspace/bin/:$PATH"
+export BASHRC="$HOME/.bashrc"
+export DOTFILES_DIR="$HOME/dotfiles"
+export PATH="$DOTFILES_DIR:$PATH"
