@@ -21,6 +21,8 @@ while getopts "capPh" opt; do
         git -C $GIT_DOTFILES pull
     ;;
     P) 
+        git -C $GIT_DOTFILES add .
+        git -C $GIT_DOTFILES commit -m "fix: dotfiles"
         git -C $GIT_DOTFILES push
     ;;
     h) help=1 
