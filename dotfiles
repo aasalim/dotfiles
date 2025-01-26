@@ -1,6 +1,21 @@
 #!/bin/bash
-DOTFILES_DIR="$HOME/dotfiles"
 
+# ____       _   _         
+#|  _ \ __ _| |_| |__  ___ 
+#| |_) / _` | __| '_ \/ __|
+#|  __/ (_| | |_| | | \__ \
+#|_|   \__,_|\__|_| |_|___/
+#                          
+DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES_LOG="$HOME/dotfiles/.dotfiles.log"
+SSH_DIR="$HOME/.ssh"
+
+#  ___        _   _                 
+# / _ \ _ __ | |_(_) ___  _ __  ___ 
+#| | | | '_ \| __| |/ _ \| '_ \/ __|
+#| |_| | |_) | |_| | (_) | | | \__ \
+# \___/| .__/ \__|_|\___/|_| |_|___/
+#      |_|                          
 copy_local_files_to_dotfiles(){
     cp "$HOME/.bashrc" $DOTFILES_DIR
     cp "$HOME/.config/nvim" $DOTFILES_DIR -r
@@ -15,17 +30,21 @@ while getopts "capPh" opt; do
   case $opt in
     c) 
         copy_local_files_to_dotfiles
+        exit 1
     ;;
     a) 
         copy_dotfiles_to_local_files
+        exit 1
     ;;
     p) 
         git -C $DOTFILES_DIR pull
+        exit 1
     ;;
     P) 
         git -C $DOTFILES_DIR add .
         git -C $DOTFILES_DIR commit -m "fix: dotfiles"
         git -C $DOTFILES_DIR push
+        exit 1
     ;;
     h) help=1 
     ;;
@@ -41,3 +60,124 @@ if [[ $help -eq 1 ]]; then
   echo "-P: Push changes to git repo"
   exit 0
 fi
+
+# ____        __             _ _   
+#|  _ \  ___ / _| __ _ _   _| | |_ 
+#| | | |/ _ \ |_ / _` | | | | | __|
+#| |_| |  __/  _| (_| | |_| | | |_ 
+#|____/ \___|_|  \__,_|\__,_|_|\__|
+#                                  
+
+# color codes
+RESTORE='\033[0m'
+NC='\033[0m'
+BLACK='\033[00;30m'
+RED='\033[00;31m'
+
+GREEN='\033[00;32m'
+YELLOW='\033[00;33m'
+
+BLUE='\033[00;34m'
+PURPLE='\033[00;35m'
+CYAN='\033[00;36m'
+SEA="\\033[38;5;49m"
+LIGHTGRAY='\033[00;37m'
+LBLACK='\033[01;30m'
+LRED='\033[01;31m'
+LGREEN='\033[01;32m'
+LYELLOW='\033[01;33m'
+
+LBLUE='\033[01;34m'
+LPURPLE='\033[01;35m'
+LCYAN='\033[01;36m'
+WHITE='\033[01;37m'
+
+OVERWRITE='\e[1A\e[K'
+
+#emoji codes
+CHECK_MARK="${GREEN}\xE2\x9C\x94${NC}"
+X_MARK="${RED}\xE2\x9C\x96${NC}"
+PIN="${RED}\xF0\x9F\x93\x8C${NC}"
+CLOCK="${GREEN}\xE2\x8C\x9B${NC}"
+ARROW="${SEA}\xE2\x96\xB6${NC}"
+BOOK="${RED}\xF0\x9F\x93\x8B${NC}"
+HOT="${ORANGE}\xF0\x9F\x94\xA5${NC}"
+
+WARNING="${RED}\xF0\x9F\x9A\xA8${NC}"
+
+RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
+
+set -e
+
+
+# _header colorize the given argument with spacing
+function __task {
+    # if _task is called while a task was set, complete the previous
+    if [[ $TASK != "" ]]; then
+        printf "${OVERWRITE}${LGREEN} [✓]  ${LGREEN}${TASK}\n"
+    fi
+
+    # set new task title and print
+    TASK=$1
+    printf "${LBLACK} [ ]  ${TASK} \n${LRED}"
+}
+
+# _cmd performs commands with error checking
+function _cmd {
+    #create log if it doesn't exist
+    if ! [[ -f $DOTFILES_LOG ]]; then
+        touch $DOTFILES_LOG
+    fi
+
+    # empty conduro.log
+    > $DOTFILES_LOG
+
+    # hide stdout, on error we print and exit
+    if eval "$1" 1> /dev/null 2> $DOTFILES_LOG; then
+        return 0 # success
+    fi
+    # read error from log and add spacing
+    printf "${OVERWRITE}${LRED} [X]  ${TASK}${LRED}\n"
+
+    while read line; do
+        printf "      ${line}\n"
+    done < $DOTFILES_LOG
+
+    printf "\n"
+
+    # remove log file
+    rm $DOTFILES_LOG
+
+    # exit installation
+    exit 1
+}
+
+function _clear_task {
+  TASK=""
+}
+
+function _task_done {
+  printf "${OVERWRITE}${LGREEN} [✓]  ${LGREEN}${TASK}\n"
+  _clear_task
+}
+
+if ! [[ -f "$SSH_DIR/authorized_keys" ]]; then
+  __task "Generating SSH keys"
+  _cmd "mkdir -p $SSH_DIR"
+  _cmd "chmod 700 $SSH_DIR"
+  _cmd "ssh-keygen -b 4096 -t rsa -f $SSH_DIR/id_rsa -N '' -C $USER@$HOSTNAME"
+  _cmd "cat $SSH_DIR/id_rsa.pub >> $SSH_DIR/authorized_keys"
+  _cmd "echo $SSH_DIR/id_rsa.pub" 
+  _task_done
+fi
+
+if ! [[ -d "$DOTFILES_DIR" ]]; then
+  __task "Cloning repository"
+  _cmd "git clone --quiet https://github.com/aasalim/dotfiles.git $DOTFILES_DIR"
+else
+  __task "Updating repository"
+  _cmd "git -C $DOTFILES_DIR pull --quiet"
+fi
+#------------------------------------------------------old
+
+
