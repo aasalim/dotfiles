@@ -162,8 +162,8 @@ while getopts "capPh" opt; do
         exit 0
     ;;
     P) 
-        git -C $DOTFILES_DIR  add .
-        git -C $DOTFILES_DIR  commit -m "fix: dotfiles"
+        git -C $DOTFILES_DIR  add . 
+        git -C $DOTFILES_DIR  commit -m "fix: dotfiles" --quiet
         git -C $DOTFILES_DIR  push --quiet
         exit 0
     ;;
