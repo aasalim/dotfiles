@@ -56,5 +56,5 @@ tty -s && export PS1="$LINE_COLOR$LINE_UPPER_CORNER$LINE_STRAIGHT$LINE_STRAIGHT$
 #|_| /_/   \_\_| |_| |_|
 #                      
 export BASHRC="$HOME/.bashrc"
-export DOTFILES_DIR="$HOME/dotfiles"
-export PATH="$DOTFILES_DIR:$PATH"
+export DOTFILES="$HOME/dotfiles"
+export PATH="$DOTFILES:$PATH"

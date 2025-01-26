@@ -7,9 +7,8 @@
 # \____\___/|_| |_|_| |_|\__, |___/
 #                        |___/     
 configs=(
-#           SOURCE                  DESTINATION
-            "$HOME/.bashrc          $DOTFILES_DIR/.bashrc"
-            "$HOME/.config/nvim     $DOTFILES_DIR/nvim"
+    "$HOME/.bashrc"
+    "$HOME/.config/nvim"
 )
 
 # ____       _   _         
@@ -18,7 +17,7 @@ configs=(
 #|  __/ (_| | |_| | | \__ \
 #|_|   \__,_|\__|_| |_|___/
 #                          
-DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES="$HOME/dotfiles"
 DOTFILES_LOG="$HOME/dotfiles/.dotfiles.log"
 SSH_DIR="$HOME/.ssh"
 
@@ -128,25 +127,22 @@ function _task_done {
 #      |_|                          
 
 copy_configs_to_dotfiles(){
-    for pair in "${configs[@]}"; do
-        src=$(echo "$pair" | awk '{print $1}')
-        dest=$(echo "$pair" | awk '{print $2}')
-        cp "$src" "$dest" -r
+    for config in "${configs[@]}"; do
+        cp -r "$config" "$DOTFILES"
     done
 }
 
 copy_dotfiles_to_configs(){
-    for pair in "${configs[@]}"; do
-        src=$(echo "$pair" | awk '{print $2}')
-        dest=$(echo "$pair" | awk '{print $1}')
-        cp "$src" "$dest" -r
+    for config in "${configs[@]}"; do
+        base_name=$(basename "$config")
+        cp -r "$DOTFILES/$base_name" "$config" 
     done
 }
 
 while getopts "capPhs" opt; do
   case $opt in
     c) 
-        __task "Copy local files to dotfiles"
+        __task "Copy configs to dotfiles"
         _cmd "copy_configs_to_dotfiles"
         _task_done
         exit 0
@@ -159,20 +155,20 @@ while getopts "capPhs" opt; do
     ;;
     p) 
         __task "Pulling Repository"
-        _cmd "git -C $DOTFILES_DIR pull"
+        _cmd "git -C $DOTFILES pull"
         _task_done
         exit 0
     ;;
     P) 
         __task "Pushing Repository"
-        _cmd "git -C $DOTFILES_DIR  add ."
-        _cmd "git -C $DOTFILES_DIR  commit -m "fix: dotfiles" --quiet"
-        _cmd "git -C $DOTFILES_DIR  push --quiet"
+        _cmd "git -C $DOTFILES  add ."
+        _cmd "git -C $DOTFILES  commit -m "fix: dotfiles" --quiet"
+        _cmd "git -C $DOTFILES  push --quiet"
         _task_done
         exit 0
     ;;
     s) 
-        git -C $DOTFILES_DIR status
+        git -C $DOTFILES status
         exit 0
     ;;
     h) help=1 
@@ -211,9 +207,9 @@ fi
 #| |_| | (_) | |_|  _| | |  __/\__ \
 #|____/ \___/ \__|_| |_|_|\___||___/
 #                                   
-if ! [[ -d "$DOTFILES_DIR" ]]; then
+if ! [[ -d "$DOTFILES" ]]; then
     __task "Cloning repository"
-    _cmd "git clone --quiet https://github.com/aasalim/dotfiles.git $DOTFILES_DIR"
+    _cmd "git clone --quiet https://github.com/aasalim/dotfiles.git $DOTFILES"
     _task_done
 fi
 #------------------------------------------------------old
