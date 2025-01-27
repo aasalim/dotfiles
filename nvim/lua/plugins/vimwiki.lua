@@ -1,23 +1,33 @@
 return {
+    -- The plugin location on GitHub
     "vimwiki/vimwiki",
-    init = function() 
+    enabled=true,
+    -- The keys that trigger the plugin
+
+    -- The configuration for the plugin
+    init = function()
         vim.g.vimwiki_list = {
             {
-                path = '~/vimwiki',
-                syntax = 'markdown',
-                ext = '.md',
-            }
+                -- Here will be the path for your wiki
+                path = "~/vimwiki/",
+                -- The syntax for the wiki
+                syntax = "markdown",
+                ext = "md",
+            },
         }
+        vim.g.vimwiki_global_ext = 0
+        --    vim.g.vimwiki_ext2syntax = { }
     end,
     config = function()
         -- Function to create floating diary window
 
+        vim.g.vimwiki_global_ext=0
         local function open_diary_float()
 
             -- Window dimensions (80% of editor size)
             local width = math.floor(vim.o.columns * 0.8)
             local height = math.floor(vim.o.lines * 0.8)
-            
+
 
             -- Create floating window with new buffer
             local buf = vim.api.nvim_create_buf(false, true)
