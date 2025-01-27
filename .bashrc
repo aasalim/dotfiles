@@ -15,7 +15,7 @@ export XDG_STATE_HOME="$HOME/.state"
 #  \ V / | | | | | | |
 #   \_/  |_|_| |_| |_|
 #                    
-export VIMRC="$HOME/.config/nvim/.vimrc"
+export VIMRC="$HOME/.config/nvim/init.lua"
 export VIMINIT="source $VIMRC"
 alias vim="nvim"
 alias vi="nvim"
