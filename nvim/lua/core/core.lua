@@ -7,5 +7,4 @@
 require('core.keymaps.keymaps')
 require('core.general')
 require('core.tabs')
-require('core.theme')
 require('core.character_tabs')
