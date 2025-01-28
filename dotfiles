@@ -128,7 +128,7 @@ function _task_done {
 
 copy_configs_to_dotfiles(){
     for config in "${configs[@]}"; do
-        cp -r "$config" "$DOTFILES"
+        rsync -av --delete "$config" "$DOTFILES"
     done
 }
 
@@ -136,7 +136,7 @@ copy_dotfiles_to_configs(){
     for config in "${configs[@]}"; do
         dir_path=$(dirname "$config")
         base_name=$(basename "$config")
-        cp -r "$DOTFILES/$base_name" "$dir_path" 
+        rsync -av --delete "$DOTFILES/$base_name" "$dir_path" 
     done
 }
 
