@@ -84,7 +84,7 @@ Add horizontal dividers.
 Create interactive task lists.
 
 - [x] Completed Task
-- [ ] Incomplete Task
+- [x] Incomplete Task
 
 11. Escaping Special Characters
 Use backslashes \ to escape special characters.

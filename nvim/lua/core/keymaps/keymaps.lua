@@ -10,5 +10,4 @@ vim.g.mapleader = " "
 require('core.keymaps.buffer_navigation')
 require('core.keymaps.tab_navigation')
 require('core.keymaps.window_navigation')
-require('core.keymaps.file_explorer')
 require('core.keymaps.custom_functions')
