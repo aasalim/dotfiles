@@ -10,6 +10,7 @@ configs=(
     "$HOME/.bashrc"
     "$HOME/.tmux.conf"
     "$HOME/.config/nvim"
+    "$HOME/.local/bin/tmux-sessionizer"
 )
 
 # ____       _   _         
