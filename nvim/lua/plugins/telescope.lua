@@ -14,7 +14,7 @@ return {
             },
             pickers={
                 find_files ={
-                    initial_mode = "normal"
+                    initial_mode = "insert"
                 }
             }
         }

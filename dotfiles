@@ -8,6 +8,7 @@
 #                        |___/     
 configs=(
     "$HOME/.bashrc"
+    "$HOME/.tmux.conf"
     "$HOME/.config/nvim"
 )
 
