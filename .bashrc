@@ -19,6 +19,7 @@ export VIMRC="$HOME/.config/nvim/init.lua"
 export VIMINIT="source $VIMRC"
 alias vim="nvim"
 alias vi="nvim"
+export EDITOR="nvim"
 
 #    _    _ _                    
 #   / \  | (_) __ _ ___  ___  ___
@@ -61,3 +62,21 @@ tty -s && export PS1="$LINE_COLOR$LINE_UPPER_CORNER$LINE_STRAIGHT$LINE_STRAIGHT$
 export BASHRC="$HOME/.bashrc"
 export DOTFILES="$HOME/dotfiles"
 export PATH="$DOTFILES:$PATH"
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+
+
+#  ____                           _ 
+# / ___| ___ _ __   ___ _ __ __ _| |
+#| |  _ / _ \ '_ \ / _ \ '__/ _` | |
+#| |_| |  __/ | | |  __/ | | (_| | |
+# \____|\___|_| |_|\___|_|  \__,_|_|
+#                                   
+eval "$(tmuxifier init -)"
+
+#__        __         _     __ _               
+#\ \      / /__  _ __| | __/ _| | _____      __
+# \ \ /\ / / _ \| '__| |/ / |_| |/ _ \ \ /\ / /
+#  \ V  V / (_) | |  |   <|  _| | (_) \ V  V / 
+#   \_/\_/ \___/|_|  |_|\_\_| |_|\___/ \_/\_/  
+#                                              
+alias rice="tmuxifier load-session rice"

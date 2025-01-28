@@ -11,6 +11,7 @@ configs=(
     "$HOME/.tmux.conf"
     "$HOME/.config/nvim"
     "$HOME/.local/bin/tmux-sessionizer"
+    "$HOME/.tmuxifier/layouts"
 )
 
 # ____       _   _         
@@ -211,10 +212,20 @@ fi
 #|____/ \___/ \__|_| |_|_|\___||___/
 #                                   
 if ! [[ -d "$DOTFILES" ]]; then
-    __task "Cloning repository"
+    __task "Cloning Dotfiles repository"
     _cmd "git clone --quiet https://github.com/aasalim/dotfiles.git $DOTFILES"
     _task_done
 fi
-#------------------------------------------------------old
 
+#  ____ _ _     ____                      
+# / ___(_) |_  |  _ \ ___ _ __   ___  ___ 
+#| |  _| | __| | |_) / _ \ '_ \ / _ \/ __|
+#| |_| | | |_  |  _ <  __/ |_) | (_) \__ \
+# \____|_|\__| |_| \_\___| .__/ \___/|___/
+#                        |_|        
+if ! [[ -d "~/.tmuxifier" ]]; then
+    __task "Cloning tmuxifier repository"
+    _cmd "git clone --quiet https://github.com/jimeh/tmuxifier.git ~/.tmuxifier"
+    _task_done
+fi
 
