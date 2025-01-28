@@ -85,7 +85,7 @@ return
                         local map = vim.keymap.set
                         local opts = { buffer = bufnr }
 
-                        map('n', '<M-c>', ':MDTaskToggle<CR>', opts)
+                        map({'i','n'}, '<M-c>', function() vim.cmd('MDTaskToggle')end, opts)
 
                     end,
                 })
