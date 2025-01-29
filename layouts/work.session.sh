@@ -10,15 +10,20 @@ if initialize_session "work"; then
     run_cmd "cd ~ && clear"
 
     new_window "fhcm"
-    run_cmd "nvim FHCM"
+    run_cmd "cd FHCM"
+    run_cmd "nvim ."
     split_h 50
-    run_cmd "cd FHCM && clear"
+
+    new_window "git fhcm"
+    run_cmd "lazygit -p ~/work/FHCM"
 
     new_window "fec"
-    run_cmd "nvim FEC"
+    run_cmd "cd FEC"
+    run_cmd "nvim ."
     split_h 50
-    run_cmd "cd FEC && clear"
-
+    
+    new_window "git fec"
+    run_cmd "lazygit -p ~/work/FEC"
 
     select_window "terminal"
 
