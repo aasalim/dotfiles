@@ -4,7 +4,7 @@
 -- Primarily just download and execute lazy.nvim
 --]]
 
-require("core.core")
+vim.g.mapleader = " "
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then

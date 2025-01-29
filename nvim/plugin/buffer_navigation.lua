@@ -10,6 +10,7 @@
 --| |\  | (_| |\ V /| | (_| | (_| | |_| | (_) | | | |
 --|_| \_|\__,_| \_/ |_|\__, |\__,_|\__|_|\___/|_| |_|
 --                     |___/                         
+
 vim.keymap.set("n", "<Tab>",     ":bnext<CR>")
 vim.keymap.set("n", "<S-Tab>",   ":bprevious<CR>")
 vim.keymap.set("n", "<Leader>d", ":bdelete<CR>")

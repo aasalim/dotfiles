@@ -41,3 +41,23 @@ vim.opt.errorbells=false
 vim.opt.visualbell=false
 vim.opt.cursorline=true
 
+--  ____ _                    _              _____     _         
+-- / ___| |__   __ _ _ __ ___| |_ ___ _ __  |_   _|_ _| |__  ___ 
+--| |   | '_ \ / _` | '__/ __| __/ _ \ '__|   | |/ _` | '_ \/ __|
+--| |___| | | | (_| | | | (__| ||  __/ |      | | (_| | |_) \__ \
+-- \____|_| |_|\__,_|_|  \___|\__\___|_|      |_|\__,_|_.__/|___/
+--                                                               
+vim.opt.tabstop=4
+vim.opt.shiftwidth=4
+vim.opt.softtabstop=4
+vim.opt.expandtab=true
+vim.opt.smartindent=true
+
+-- _____     _         
+--|_   _|_ _| |__  ___ 
+--  | |/ _` | '_ \/ __|
+--  | | (_| | |_) \__ \
+--  |_|\__,_|_.__/|___/
+--                     
+vim.opt.showtabline=2
+vim.opt.laststatus=2
