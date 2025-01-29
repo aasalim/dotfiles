@@ -80,3 +80,4 @@ eval "$(tmuxifier init -)"
 #   \_/\_/ \___/|_|  |_|\_\_| |_|\___/ \_/\_/  
 #                                              
 alias rice="tmuxifier load-session rice"
+alias work="tmuxifier load-session work"

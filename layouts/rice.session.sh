@@ -10,7 +10,7 @@ if initialize_session "rice"; then
   run_cmd "cd ~ && clear"
 
   new_window "nvim_config"
-  run_cmd "cd ~/.config/nvim/lua && clear"
+  run_cmd "cd ~/.config/nvim && clear"
   run_cmd "nvim ."
 
   new_window "dotfiles"
@@ -26,6 +26,9 @@ if initialize_session "rice"; then
 
   new_window "tmux"
   run_cmd "nvim ~/.tmux.conf"
+  split_h 50
+  run_cmd "cd ~/ && clear"
+  select_pane 2  
 
   new_window "wiki"
   run_cmd "wiki"
