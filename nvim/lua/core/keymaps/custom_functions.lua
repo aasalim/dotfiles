@@ -55,12 +55,8 @@ vim.keymap.set('n', '<Leader>~', function()
     vim.fn.append('$', {'#endif /* ' .. guard .. ' */'})
 end, { noremap = true })
 
-local function reload()
-  dofile(vim.env.VIMRC)
-  print("Configuration reloaded")
-end
-vim.keymap.set("n", "<leader>ve", ":tabnew $VIMRC<cr>", { desc = "Open neovim configuration file" })
-vim.keymap.set("n", "<leader>r", reload, { desc = "Re-source neovim configuration file" })
+
+vim.keymap.set("n", "<leader>ra", ":source %<CR>")
 
 -- Map <Leader>diary to call WikiDiaryTemplate
 vim.api.nvim_set_keymap('n', '<Leader>diary', ':lua WikiDiaryTemplate()<CR>', { noremap = true, silent = true })
