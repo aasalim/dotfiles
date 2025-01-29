@@ -72,6 +72,7 @@ export PATH="$HOME/.tmuxifier/bin:$PATH"
 # \____|\___|_| |_|\___|_|  \__,_|_|
 #                                   
 eval "$(tmuxifier init -)"
+export TERM=tmux-256color
 
 #__        __         _     __ _               
 #\ \      / /__  _ __| | __/ _| | _____      __

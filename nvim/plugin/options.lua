@@ -40,6 +40,7 @@ vim.opt.showmatch=true
 vim.opt.errorbells=false
 vim.opt.visualbell=false
 vim.opt.cursorline=true
+vim.opt.clipboard="unnamedplus"
 
 --  ____ _                    _              _____     _         
 -- / ___| |__   __ _ _ __ ___| |_ ___ _ __  |_   _|_ _| |__  ___ 

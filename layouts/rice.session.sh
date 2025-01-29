@@ -6,34 +6,32 @@ session_root "$DOTFILES"
 # argument is given, session name will be based on layout file name.
 if initialize_session "rice"; then
 
-  new_window "terminal"
-  run_cmd "cd ~ && clear"
+    new_window "terminal"
+    run_cmd "cd ~ && clear"
 
-  new_window "nvim_config"
-  run_cmd "cd ~/.config/nvim && clear"
-  run_cmd "nvim ."
+    new_window "nvim_config"
+    run_cmd "cd ~/.config/nvim && clear"
+    run_cmd "nvim ."
 
-  new_window "dotfiles"
-  run_cmd "cd $DOTFILES && clear"
-  run_cmd "nvim ."
-  split_v 50
-  run_cmd "lazygit"
-  select_pane 1
-  split_h 50
+    new_window "dotfiles"
+    run_cmd "cd $DOTFILES && clear"
+    run_cmd "nvim ."
+    split_h 50
+    select_pane 1
 
-  new_window "bashrc"
-  run_cmd "nvim $BASHRC"
+    new_window "bashrc"
+    run_cmd "nvim $BASHRC"
 
-  new_window "tmux"
-  run_cmd "nvim ~/.tmux.conf"
-  split_h 50
-  run_cmd "cd ~/ && clear"
-  select_pane 2  
+    new_window "tmux"
+    run_cmd "nvim ~/.tmux.conf"
+    split_h 50
+    run_cmd "cd ~/ && clear"
+    select_pane 2  
 
-  new_window "wiki"
-  run_cmd "wiki"
+    new_window "wiki"
+    run_cmd "wiki"
 
-  select_window "terminal"
+    select_window "terminal"
 
 fi
 

@@ -14,18 +14,15 @@ if initialize_session "work"; then
     run_cmd "nvim ."
     split_h 50
 
-    new_window "git fhcm"
-    run_cmd "lazygit -p ~/work/FHCM"
-
     new_window "fec"
     run_cmd "cd FEC"
     run_cmd "nvim ."
     split_h 50
-    
-    new_window "git fec"
-    run_cmd "lazygit -p ~/work/FEC"
 
     select_window "terminal"
+
+    new_window "wiki"
+    run_cmd "wiki"
 
 fi
 
