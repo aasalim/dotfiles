@@ -24,7 +24,7 @@ require("notify").setup({
     WARN = ""
   },
   level = 2,
-  minimum_width = 40,
+  minimum_width = 50,
   max_width=50,
   render = "wrapped-compact",
   stages = "static",
